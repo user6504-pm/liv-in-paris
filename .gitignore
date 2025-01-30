@@ -1,0 +1,120 @@
+# Build results
+bin/
+obj/
+out/
+
+# Visual Studio Files
+.vs/
+*.user
+*.suo
+*.userprefs
+*.dbmdl
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.cache
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# Mac
+*.DS_Store
+
+# Packages
+*.nupkg
+# Les dossiers NuGet générés (en général si vous utilisez des packages locaux)
+packages/
+
+# Fichiers de logs
+*.log
+
+# Resharper / Rider
+*.DotSettings.user
+*.DotSettings
+.idea/
+*.sln.iml
+
+# Auto-generated files
+Generated\ 
+*.generated.cs
+
+# Coverage, test, profiling
+coverage/
+TestResults/
+*.coverage
+*.coveragexml
+*.testlogger.trx
+
+# Azure Pipelines
+*.PublishProfiles/
+
+# Différents backups, patch, etc.
+*.orig
+*.swp
+*.bak
+*.tmp
+*.patch
+*.rej
+
+# Visual Studio cache files
+*.sln.ide
+*.pdb
+
+# Exclure les secrets et configurations sensibles (exemple, User Secrets .NET)
+secrets.json
+
+# Rider & IntelliJ project files
+.idea/
+*.iml
+
+# Build artifacts (MSBuild)
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Exclude temp files created by Visual Studio
+~$*
+
+# Exclude FileList.xml
+FileList.xml
+
+# Database files
+*.mdf
+*.ldf
+*.ndf
+
+# Lokalise or i18n platform files
+*.locres
+
+# Pour les projets Web ASP.NET Core
+wwwroot/node_modules/
+wwwroot/lib/
+node_modules/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# JetBrains Rider
+*.idea/
+*.sln.iml
+
+# Empêchez les doublons éventuels (Rider)
+**/*.sln.ide
+**/*.sln.DotSettings.user
+**/*.sln.DotSettings
+
+# Pour Blazor WebAssembly
+wwwroot/*.cache/
+wwwroot/*.gz
+wwwroot/*.br
+
+# Others
+*.cmd
+*.bat
+*.sh
+*.ps1
+*.bash
