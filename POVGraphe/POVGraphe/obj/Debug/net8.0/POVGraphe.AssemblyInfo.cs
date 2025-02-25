@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6251699da98d7c4a8131661aeb8c16c80c1158c")]
 [assembly: System.Reflection.AssemblyProductAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

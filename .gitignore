@@ -23,10 +23,9 @@ out/
 
 # Packages
 *.nupkg
-# Les dossiers NuGet générés (en général si vous utilisez des packages locaux)
 packages/
 
-# Fichiers de logs
+# Log files
 *.log
 
 # Resharper / Rider
@@ -36,7 +35,7 @@ packages/
 *.sln.iml
 
 # Auto-generated files
-Generated\ 
+Generated/ 
 *.generated.cs
 
 # Coverage, test, profiling
@@ -49,7 +48,7 @@ TestResults/
 # Azure Pipelines
 *.PublishProfiles/
 
-# Différents backups, patch, etc.
+# Backups, patches, etc.
 *.orig
 *.swp
 *.bak
@@ -61,7 +60,7 @@ TestResults/
 *.sln.ide
 *.pdb
 
-# Exclure les secrets et configurations sensibles (exemple, User Secrets .NET)
+# Exclude secrets and sensitive configurations
 secrets.json
 
 # Rider & IntelliJ project files
@@ -87,7 +86,7 @@ FileList.xml
 # Lokalise or i18n platform files
 *.locres
 
-# Pour les projets Web ASP.NET Core
+# ASP.NET Core Web projects
 wwwroot/node_modules/
 wwwroot/lib/
 node_modules/
@@ -102,19 +101,18 @@ pnpm-lock.yaml
 *.idea/
 *.sln.iml
 
-# Empêchez les doublons éventuels (Rider)
+# Rider duplicate prevention
 **/*.sln.ide
 **/*.sln.DotSettings.user
 **/*.sln.DotSettings
 
-# Pour Blazor WebAssembly
+# Blazor WebAssembly
 wwwroot/*.cache/
 wwwroot/*.gz
 wwwroot/*.br
 
-# Others
-*.cmd
-*.bat
-*.sh
-*.ps1
-*.bash
+# Additional exclusions based on provided image
+*.dgspec.json
+*.nuget.g.props
+*.assets.json
+*.nuget.cache
