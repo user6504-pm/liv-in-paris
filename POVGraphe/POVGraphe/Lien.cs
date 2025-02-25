@@ -9,8 +9,8 @@ class Lien
     public Noeud Cible;
     public Lien(Noeud source, Noeud cible)
     {
-        Source = source;
-        Cible = cible;
+        this. Source = source;
+        this.Cible = cible;
     }
 }
 
