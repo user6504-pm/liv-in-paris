@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6251699da98d7c4a8131661aeb8c16c80c1158c")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb9f28c8cd903808c648926df62223b2a8ec40d5")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("POVGraphe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
