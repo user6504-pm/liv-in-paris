@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Tone\\Documents\\GitHub\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj": {}
   },
   "projects": {
@@ -12,12 +13,29 @@
         "projectPath": "C:\\Users\\Tone\\Documents\\GitHub\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj",
         "packagesPath": "C:\\Users\\Tone\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Tone\\Documents\\GitHub\\liv-in-paris\\POVGraphe\\POVGraphe\\obj\\",
+=======
+    "C:\\Users\\user6\\Desktop\\github\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\user6\\Desktop\\github\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user6\\Desktop\\github\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj",
+        "projectName": "POVGraphe",
+        "projectPath": "C:\\Users\\user6\\Desktop\\github\\liv-in-paris\\POVGraphe\\POVGraphe\\POVGraphe.csproj",
+        "packagesPath": "C:\\Users\\user6\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user6\\Desktop\\github\\liv-in-paris\\POVGraphe\\POVGraphe\\obj\\",
+>>>>>>> bef0ee165bb9eea0fd97ac6e5ffe251c0c9e1bf1
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\Tone\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\user6\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> bef0ee165bb9eea0fd97ac6e5ffe251c0c9e1bf1
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,7 +60,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
+          "auditMode": "all"
         },
         "SdkAnalysisLevel": "9.0.100"
       },
@@ -65,7 +83,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+>>>>>>> bef0ee165bb9eea0fd97ac6e5ffe251c0c9e1bf1
         }
       }
     }
