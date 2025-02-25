@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 class Graphe
 {
     private Dictionary<int, List<int>> dictionnaireAdjacence;
-    private int[,] matriceLiens;
+    private int[,] matriceLiens; //Rajouter les 2 modes Listes/Matrices adjacences
     private int taille;
-
+    //+ utiliser les classes noeuds et liens
     public Graphe(int taille)
     {
         this.taille = taille;
