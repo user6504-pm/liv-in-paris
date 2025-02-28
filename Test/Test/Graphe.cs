@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -13,7 +12,7 @@ public class Graphe
     public Graphe(List<Noeud> noeuds)
     {
         this.NoeudsGraphe = noeuds;
-        this.taille = noeuds.Count+1;
+        this.taille = noeuds.Count + 1;
         this.matriceAdjacence = new int[taille, taille];
 
         //construction de la matrice d'adjacence
@@ -94,7 +93,7 @@ public class Graphe
     {
         Queue<int> file = new Queue<int>();
         Dictionary<int, string> etatSommets = new Dictionary<int, string>();
-            //initialisé le dictionary avec les noeuds
+        //initialisé le dictionary avec les noeuds
         List<int> OrdreTerminé = new List<int>();
 
         foreach (var noeud in NoeudsGraphe)
@@ -107,8 +106,8 @@ public class Graphe
 
         while (file.Count > 0)
         {
-            int sommetActuel = file.Dequeue(); 
-            etatSommets[sommetActuel] = "Rouge"; 
+            int sommetActuel = file.Dequeue();
+            etatSommets[sommetActuel] = "Rouge";
             OrdreTerminé.Add(sommetActuel);
 
 
@@ -127,7 +126,7 @@ public class Graphe
                         }
                     }
                 }
-            } 
+            }
         }
         string ligne = "";
         foreach (var sommet in OrdreTerminé)
@@ -176,7 +175,7 @@ public class Graphe
                         }
                     }
                 }
-            }            
+            }
         }
 
         string ligne = "";
@@ -223,13 +222,13 @@ public class Graphe
 
             if (!aVoisinNonVisite)
             {
-                etatSommets[sommetActuel] = "Rouge"; 
+                etatSommets[sommetActuel] = "Rouge";
                 OrdreTerminé.Add(sommetActuel);
-                Console.WriteLine("Fin du traitement du sommet "+sommetActuel+" (Rouge)");
+                Console.WriteLine("Fin du traitement du sommet " + sommetActuel + " (Rouge)");
                 pile.Pop();
             }
         }
-            bool connexe = !etatSommets.Values.Contains("Blanc");
+        bool connexe = !etatSommets.Values.Contains("Blanc");
 
         Console.WriteLine("Ordre de marquage terminé (Rouge) : " + string.Join(",", OrdreTerminé));
 
@@ -241,7 +240,7 @@ public class Graphe
         {
             Console.WriteLine("Le graphe n'est PAS connexe.");
         }
-            return connexe;
+        return connexe;
     }
 
     public bool ContientCycleRécu()
@@ -255,11 +254,11 @@ public class Graphe
         }
 
         // Vérifie chaque composante du graphe
-        foreach (var noeud in NoeudsGraphe)        
+        foreach (var noeud in NoeudsGraphe)
         {
             if (etatSommets[noeud.Id] == "Blanc" && ContientCycleRécuUtil(noeud.Id, etatSommets, -1))
-            {                
-                    return true;
+            {
+                return true;
             }
         }
         return false;
@@ -267,7 +266,7 @@ public class Graphe
 
     public bool ContientCycleRécuUtil(int sommet, Dictionary<int, string> etatSommets, int parent)
     {
-        etatSommets[sommet] = "Jaune"; 
+        etatSommets[sommet] = "Jaune";
 
         foreach (var voisin in NoeudsGraphe[sommet].ListeAdjacence)
         {
@@ -279,15 +278,13 @@ public class Graphe
             else if (voisin != parent && etatSommets[voisin] == "Jaune")
             {
                 // Cycle détecté si on revient sur un sommet découvert autre que le parent
-                Console.WriteLine("Cycle détecté via le sommet "+voisin+" !");
+                Console.WriteLine("Cycle détecté via le sommet " + voisin + " !");
                 return true;
             }
         }
 
         etatSommets[sommet] = "Rouge"; // Marquer comme terminé
-        Console.WriteLine("Fin du traitement du sommet "+sommet+" (Rouge)");
+        Console.WriteLine("Fin du traitement du sommet " + sommet + " (Rouge)");
         return false;
     }
 }
-
-

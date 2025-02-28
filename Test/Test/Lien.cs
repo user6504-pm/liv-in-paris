@@ -13,4 +13,3 @@ public class Lien
         this.Cible = cible;
     }
 }
-

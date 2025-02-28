@@ -16,9 +16,10 @@ public class Noeud
 
     public void AjouterVoisin(Noeud voisin)
     {
-        if(!ListeAdjacence.Contains(voisin.Id))
+        if (!ListeAdjacence.Contains(voisin.Id))
         {
             ListeAdjacence.Add(voisin.Id);
         }
     }
 }
+

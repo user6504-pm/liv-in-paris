@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssociationGraphe", "Test\AssociationGraphe.csproj", "{69988400-382C-4285-9A89-61C945B36EAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphTests", "GraphTests\GraphTests.csproj", "{F82FE1E8-9B3F-4570-9409-1F53489A269E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69988400-382C-4285-9A89-61C945B36EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69988400-382C-4285-9A89-61C945B36EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69988400-382C-4285-9A89-61C945B36EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69988400-382C-4285-9A89-61C945B36EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82FE1E8-9B3F-4570-9409-1F53489A269E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82FE1E8-9B3F-4570-9409-1F53489A269E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82FE1E8-9B3F-4570-9409-1F53489A269E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82FE1E8-9B3F-4570-9409-1F53489A269E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -10,19 +10,56 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            //lire le fichier soc-karate.mtx
-            //instencier dans le graphe (en utilisant les 2 modes)
             //répondre aux questions (parcours, connexe, cycle ?)
             //+ outils de visualisation d'un graphe (Microsoft System.Drawing)
+            string chemin = "Noeuds + Liens - associations.txt";
+            Graphe mongraphe = ChargerGrapheDepuisFichier(chemin);
+            mongraphe.AfficherGraphe();
+            // mongraphe.ParcoursLargeur(1);
+            mongraphe.ParcoursProfondeur(1);
+            //    mongraphe.EstConnexe(); // <-- à revoir problème de out of range
+            //mongraphe.ContientCycleRécu();
+        }
+            static Graphe ChargerGrapheDepuisFichier(string cheminFichier)
+            {
+                Dictionary<int,Noeud> dictionnaireNoeuds = new Dictionary<int, Noeud>();
+                List<Noeud> ListeNoeuds = new List<Noeud>();
 
+            foreach (var ligne in File.ReadLines(cheminFichier))
+            {
+                string[] parties = ligne.Split(' ');
+                int sourceId = int.Parse(parties[0]);
+                int cibleId = int.Parse(parties[1]);
+                
+                    if (!dictionnaireNoeuds.ContainsKey(sourceId))
+                    {
+                        dictionnaireNoeuds[sourceId] = new Noeud(sourceId);
+                        ListeNoeuds.Add(dictionnaireNoeuds[sourceId]);
+                    }
 
-            Graphe monGraphe = new Graphe(6);
-            monGraphe.AjouterLien(0, 1);
-            monGraphe.AjouterLien(0, 2);
+                    if (!dictionnaireNoeuds.ContainsKey(cibleId))
+                    {
+                        dictionnaireNoeuds[cibleId] = new Noeud(cibleId);
+                        ListeNoeuds.Add(dictionnaireNoeuds[cibleId]);
+                    }
+
+                    dictionnaireNoeuds[sourceId].AjouterVoisin(dictionnaireNoeuds[cibleId]);
+                    dictionnaireNoeuds[cibleId].AjouterVoisin(dictionnaireNoeuds[sourceId]);
             
-            monGraphe.AjouterLien(1, 3);
+            }
+            AfficherListe(ListeNoeuds);
+            //construire le graphe
 
-            monGraphe.ParcoursProfondeur(2);
+             Graphe monGraphe = new Graphe(ListeNoeuds);
+            return monGraphe;
+            }
+
+        static void AfficherListe(List<Noeud> liste)
+        {
+            foreach (Noeud item in liste)
+            {
+                Console.WriteLine(item.Id);
+            }
         }
 
     }
