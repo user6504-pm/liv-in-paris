@@ -8,7 +8,7 @@ public class GrapheRenderer
     private Graphe _graphe;
     private Dictionary<int, Point> _positions = new Dictionary<int, Point>();
     private int _nodeRadius = 10;
-    private Font _nodeFont = new Font("Arial", 8,FontStyle.Bold); // Police plus petite
+    private Font _nodeFont = new Font("Arial", 8,FontStyle.Bold); 
     private Brush _textBrush = Brushes.White;
     public GrapheRenderer(Graphe graphe, int width, int height)
     {
@@ -18,7 +18,6 @@ public class GrapheRenderer
 
     private void CalculateNodePositions(int width, int height)
     {
-        // Positionnement circulaire
         int margin = 70;
         int centerX = width / 2;
         int centerY = height / 2;
@@ -39,7 +38,6 @@ public class GrapheRenderer
 
     public void Draw(Graphics g)
     {
-        // Dessiner les liens
         using (var pen = new Pen(Color.DarkGray, 1))
         {
             foreach (var noeud in _graphe.NoeudsGraphe)
@@ -57,7 +55,6 @@ public class GrapheRenderer
             }
         }
 
-        // Dessiner les nœuds (partie corrigée)
         foreach (KeyValuePair<int, Point> kvp in _positions)
         {
             int id = kvp.Key;

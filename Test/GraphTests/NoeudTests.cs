@@ -1,22 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Test; // Remplace par le namespace de ton projet
+using Test;
 
-    [TestClass]
-public sealed class NoeudTests
+namespace AssociationGraphe
 {
-    [TestMethod]
-    public void AjouterVoisin_DoitAjouterIDAListeAdjacence()
+    [TestClass]
+    public sealed class NoeudTests
     {
-        // Arrange (Préparation)
-        var noeudA = new Noeud(1);
-        var noeudB = new Noeud(2);
+        [TestMethod]
+        public void AjouterVoisin_DoitAjouterIDAListeAdjacence()
+        {
+            var noeudA = new Noeud(1);
+            var noeudB = new Noeud(2);
 
-        // Act (Action)
-        noeudA.AjouterVoisin(noeudB);
+            noeudA.AjouterVoisin(noeudB);
 
-        // Assert (Vérification)
-        Assert.IsTrue(noeudA.ListeAdjacence.Contains(2));
-        Assert.AreEqual(1, noeudA.ListeAdjacence.Count);
+            Assert.IsTrue(noeudA.ListeAdjacence.Contains(2));
+            Assert.AreEqual(1, noeudA.ListeAdjacence.Count);
+        }
     }
 }
 

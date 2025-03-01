@@ -20,22 +20,16 @@ namespace Test
         {
             InitializeComponent();
 
-            //répondre aux questions (parcours, connexe, cycle ?)
-            //+ outils de visualisation d'un graphe (Microsoft System.Drawing)
             string chemin = "Noeuds + Liens - associations.txt";
             mongraphe = ChargerGrapheDepuisFichier(chemin);
             mongraphe.AfficherGraphe();
             mongraphe.ParcoursLargeur(1);
-            //mongraphe.EstConnexe(); // <-- à revoir problème de out of range
-           // mongraphe.ContientCycleRécu();
-
+            mongraphe.EstConnexe();
     
             _renderer = new GrapheRenderer(mongraphe, panelGraphe.Width, panelGraphe.Height);
 
-            // Activer le redessin
             panelGraphe.Paint += PanelGraphe_Paint;
-
-
+            Form1_Load(this, EventArgs.Empty);
         }
 
         private void PanelGraphe_Paint(object sender, PaintEventArgs e)
@@ -74,36 +68,22 @@ namespace Test
 
             }
             AfficherListe(ListeNoeuds);
-            //construire le graphe
-
             Graphe monGraphe = new Graphe(ListeNoeuds);
             return monGraphe;
         }
 
         static void AfficherListe(List<Noeud> liste)
         {
+            string ligne = "";
             foreach (Noeud item in liste)
             {
-                Console.WriteLine(item.Id);
+                ligne += item.Id + ",";
             }
-        }
-
-        // Dans Form1.cs
-        private void btnParcoursLargeur_Click(object sender, EventArgs e)
-        {
-            mongraphe.ParcoursLargeur(0); // Démarrer depuis le nœud 0
-            panelGraphe.Invalidate();   // Rafraîchir l'affichage
-        }
-
-        private void btnParcoursProfondeur_Click(object sender, EventArgs e)
-        {
-            mongraphe.ParcoursProfondeur(0);
-            panelGraphe.Invalidate();
+            Console.WriteLine("Noeuds du Graphe : "+ligne);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Code exécuté au chargement du formulaire
             MessageBox.Show("Formulaire chargé !");
         }
     }

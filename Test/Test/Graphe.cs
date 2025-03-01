@@ -15,24 +15,20 @@ public class Graphe
         this.taille = noeuds.Count + 1;
         this.matriceAdjacence = new int[taille, taille];
 
-        //construction de la matrice d'adjacence
         foreach (var noeud in NoeudsGraphe)
         {
             foreach (var voisinId in noeud.ListeAdjacence)
             {
-                // Trouver l'indice du voisin dans la liste des noeuds
                 int sourceIndex = noeud.Id;
                 int cibleIndex = voisinId;
 
-                // Remplir la matrice
                 matriceAdjacence[sourceIndex, cibleIndex] = 1;
-                matriceAdjacence[cibleIndex, sourceIndex] = 1; // Si le graphe est non orienté, sinon commente cette ligne.
+                matriceAdjacence[cibleIndex, sourceIndex] = 1; 
             }
         }
     }
     public void AfficherListeNoeuds()
     {
-        // Affiche la liste des noeuds avec leur Id et ListeAdjacence
         Console.WriteLine("Liste des Noeuds:");
         foreach (var noeud in NoeudsGraphe)
         {
@@ -42,7 +38,6 @@ public class Graphe
 
     public void AfficherMatriceAdjacence()
     {
-        // Afficher la matrice d'adjacence
         Console.WriteLine("\nMatrice d'Adjacence:");
         for (int i = 0; i < taille; i++)
         {
@@ -56,13 +51,11 @@ public class Graphe
 
     public void AfficherTailleGraphe()
     {
-        // Afficher la taille du graphe
         Console.WriteLine($"\nTaille du graphe: {taille}");
     }
 
     public void AfficherGraphe()
     {
-        // Appel des méthodes définies précédemment
         AfficherListeNoeuds();
         AfficherMatriceAdjacence();
         AfficherTailleGraphe();
@@ -72,11 +65,9 @@ public class Graphe
 
         if (lien.Source.Id < taille && lien.Cible.Id < taille)
         {
-            // Ajout à la matrice d'adjacence
             matriceAdjacence[lien.Source.Id, lien.Cible.Id] = 1;
             matriceAdjacence[lien.Cible.Id, lien.Source.Id] = 1;
 
-            // Ajout à la liste d'adjacence des deux nœuds
             lien.Source.ListeAdjacence.Add(lien.Cible.Id);
             lien.Cible.ListeAdjacence.Add(lien.Source.Id);
         }
@@ -93,12 +84,12 @@ public class Graphe
     {
         Queue<int> file = new Queue<int>();
         Dictionary<int, string> etatSommets = new Dictionary<int, string>();
-        //initialisé le dictionary avec les noeuds
+       
         List<int> OrdreTerminé = new List<int>();
 
         foreach (var noeud in NoeudsGraphe)
         {
-            etatSommets[noeud.Id] = "Blanc";                      //ici là
+            etatSommets[noeud.Id] = "Blanc";                      
         }
 
         file.Enqueue(depart);
@@ -111,14 +102,13 @@ public class Graphe
             OrdreTerminé.Add(sommetActuel);
 
 
-            //Explore les voisins
+          
             foreach (var noeud in NoeudsGraphe)
             {
                 if (noeud.Id == sommetActuel)
                 {
                     foreach (var voisin in noeud.ListeAdjacence)
                     {
-                        //chéquer si ça marche avec le type de 'voisin'
                         if (etatSommets[voisin] == "Blanc")
                         {
                             etatSommets[voisin] = "Jaune";
@@ -160,14 +150,12 @@ public class Graphe
             etatSommets[sommetActuel] = "Rouge";
             OrdreTerminé.Add(sommetActuel);
 
-            // Explorer les voisins 
             foreach (var noeud in NoeudsGraphe)
             {
                 if (noeud.Id == sommetActuel)
                 {
                     foreach (var voisin in noeud.ListeAdjacence)
                     {
-                        //chéquer si ça marche avec le type de 'voisin'
                         if (etatSommets[voisin] == "Blanc")
                         {
                             etatSommets[voisin] = "Jaune";
@@ -189,6 +177,7 @@ public class Graphe
 
     public bool EstConnexe()
     {
+
         Dictionary<int, string> etatSommets = new Dictionary<int, string>();
         List<int> OrdreTerminé = new List<int>();
 
@@ -208,10 +197,10 @@ public class Graphe
             int sommetActuel = pile.Peek();
             bool aVoisinNonVisite = false;
 
-            // Explore les voisins
-            foreach (var voisin in NoeudsGraphe[sommetActuel].ListeAdjacence)
+            Noeud noeudActuel = NoeudsGraphe.FirstOrDefault(n => n.Id == sommetActuel);
+            if (noeudActuel == null) continue; 
+            foreach (var voisin in noeudActuel.ListeAdjacence)
             {
-                //chéquer si ça marche avec le type de 'voisin'
                 if (etatSommets[voisin] == "Blanc" && etatSommets[voisin] == "Blanc")
                 {
                     etatSommets[voisin] = "Jaune";
@@ -247,13 +236,11 @@ public class Graphe
     {
         Dictionary<int, string> etatSommets = new Dictionary<int, string>();
 
-        // Initialise tous les sommets en Blanc 
         foreach (var noeud in NoeudsGraphe)
         {
             etatSommets[noeud.Id] = "Blanc";
         }
 
-        // Vérifie chaque composante du graphe
         foreach (var noeud in NoeudsGraphe)
         {
             if (etatSommets[noeud.Id] == "Blanc" && ContientCycleRécuUtil(noeud.Id, etatSommets, -1))
@@ -277,13 +264,12 @@ public class Graphe
             }
             else if (voisin != parent && etatSommets[voisin] == "Jaune")
             {
-                // Cycle détecté si on revient sur un sommet découvert autre que le parent
                 Console.WriteLine("Cycle détecté via le sommet " + voisin + " !");
                 return true;
             }
         }
 
-        etatSommets[sommet] = "Rouge"; // Marquer comme terminé
+        etatSommets[sommet] = "Rouge"; 
         Console.WriteLine("Fin du traitement du sommet " + sommet + " (Rouge)");
         return false;
     }
