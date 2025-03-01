@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
+/// <summary>
+/// Classe spécialisée dans le rendu visuel d'un graphe sur une surface graphique
+/// </summary>
 public class GrapheRenderer
 {
     private Graphe _graphe;
+    /// <summary>
+    /// Dictionnaire associant chaque ID de noeud à ses coordonnées d'affichage
+    /// </summary>
     private Dictionary<int, Point> _positions = new Dictionary<int, Point>();
+    /// <summary>
+    /// Rayon visuel des noeuds en pixels
+    /// </summary>
     private int _nodeRadius = 10;
+    /// <summary>
+    /// Configuration typographique pour l'affichage des ID de noeuds
+    /// </summary>
     private Font _nodeFont = new Font("Arial", 8,FontStyle.Bold); 
     private Brush _textBrush = Brushes.White;
     public GrapheRenderer(Graphe graphe, int width, int height)
@@ -15,7 +26,9 @@ public class GrapheRenderer
         _graphe = graphe;
         CalculateNodePositions(width, height);
     }
-
+    /// <summary>
+    /// Calcule un positionnement circulaire équilibré pour les noeuds
+    /// </summary>
     private void CalculateNodePositions(int width, int height)
     {
         int margin = 70;

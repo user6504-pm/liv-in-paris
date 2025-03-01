@@ -11,9 +11,21 @@ using System.IO;
 
 namespace Test
 {
+    /// <summary>
+    /// Formulaire principal permettant la visualisation interactive d'un graphe
+    /// et la construction de celui-ci
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Instance du graphe chargé en mémoire
+        /// Contient l'ensemble des noeuds et leurs relations
+        /// </summary>
         public Graphe mongraphe;
+        /// <summary>
+        /// Moteur de rendu graphique chargé de dessiner le graphe
+        /// Gère le positionnement des éléments et leur apparence
+        /// </summary>
         public GrapheRenderer _renderer;
 
         public Form1()
@@ -25,11 +37,11 @@ namespace Test
             mongraphe.AfficherGraphe();
             mongraphe.ParcoursLargeur(1);
             mongraphe.EstConnexe();
+            mongraphe.ContientCycle();
     
             _renderer = new GrapheRenderer(mongraphe, panelGraphe.Width, panelGraphe.Height);
 
             panelGraphe.Paint += PanelGraphe_Paint;
-            Form1_Load(this, EventArgs.Empty);
         }
 
         private void PanelGraphe_Paint(object sender, PaintEventArgs e)
@@ -39,7 +51,10 @@ namespace Test
                 _renderer.Draw(e.Graphics);
             }
         }
-
+        /// <summary>
+        /// Charge un graphe à partir d'un fichier texte structuré
+        /// Format attendu : "id_source id_cible" par ligne
+        /// </summary>
         private Graphe ChargerGrapheDepuisFichier(string cheminFichier)
         {
             Dictionary<int, Noeud> dictionnaireNoeuds = new Dictionary<int, Noeud>();

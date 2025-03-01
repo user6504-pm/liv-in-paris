@@ -4,10 +4,24 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+
 public class Graphe
 {
+    /// <summary>
+    /// Collection complète des noeuds constituant le graphe
+    /// </summary>
     public List<Noeud> NoeudsGraphe;
+    /// <summary>
+    /// Matrice carrée représentant les connexions entre noeuds
+    /// - 0 : Pas de connexion
+    /// - 1 : Connexion existante
+    /// La matrice est symétrique pour les graphes non orientés
+    /// </summary>
     public int[,] matriceAdjacence;
+    /// <summary>
+    /// Taille théorique maximale de la matrice d'adjacence
+    /// Déterminée par l'ID maximum des noeuds + 1
+    /// </summary>
     public int taille;
     public Graphe(List<Noeud> noeuds)
     {
@@ -15,6 +29,7 @@ public class Graphe
         this.taille = noeuds.Count + 1;
         this.matriceAdjacence = new int[taille, taille];
 
+        // construction de la matrice d'adjacence
         foreach (var noeud in NoeudsGraphe)
         {
             foreach (var voisinId in noeud.ListeAdjacence)
@@ -77,9 +92,13 @@ public class Graphe
         }
     }
 
-    //Blanc => neutre
-    //Jaune => Découvert
-    //Rouge => visité
+    /// <summary>
+    /// Exécute un parcours en largeur (BFS) à partir d'un noeud spécifié
+    /// Utilise un système de coloration :
+    /// - Blanc : Non découvert
+    /// - Jaune : Découvert mais non traité
+    /// - Rouge : Traité
+    /// </summary>
     public void ParcoursLargeur(int depart)
     {
         Queue<int> file = new Queue<int>();
@@ -127,9 +146,10 @@ public class Graphe
         Console.WriteLine("Fin du parcours en largeur.");
         Console.WriteLine(ligne);
     }
-
-
-
+    /// <summary>
+    /// Exécute un parcours en profondeur (DFS) à partir d'un noeud spécifié
+    /// Utilise le même système de coloration
+    /// </summary>
     public void ParcoursProfondeur(int depart)
     {
         Stack<int> pile = new Stack<int>();
@@ -175,6 +195,11 @@ public class Graphe
         Console.WriteLine(ligne);
     }
 
+    /// <summary>
+    /// Détermine si le graphe est connexe (tous les noeuds accessibles depuis n'importe quel noeud)
+    /// Implémentation basée sur un parcours en profondeur itératif
+    /// Vérifie l'absence de noeuds non découverts après parcours
+    /// </summary>
     public bool EstConnexe()
     {
 
@@ -213,7 +238,6 @@ public class Graphe
             {
                 etatSommets[sommetActuel] = "Rouge";
                 OrdreTerminé.Add(sommetActuel);
-                Console.WriteLine("Fin du traitement du sommet " + sommetActuel + " (Rouge)");
                 pile.Pop();
             }
         }
@@ -231,44 +255,59 @@ public class Graphe
         }
         return connexe;
     }
-
-    public bool ContientCycleRécu()
+    /// <summary>
+    /// Vérifie la présence d'au moins un cycle dans le graphe en utilisant une approche récursive
+    /// </summary>
+    public bool ContientCycle()
     {
+        // Dictionnaire pour suivre l'état de chaque nœud :
+        // "Blanc" = Non visité, "Jaune" = En cours de visite, "Rouge" = Visité
         Dictionary<int, string> etatSommets = new Dictionary<int, string>();
 
+        // Initialisation de tous les nœuds en "Blanc"
         foreach (var noeud in NoeudsGraphe)
         {
             etatSommets[noeud.Id] = "Blanc";
         }
 
+        // Parcours de tous les nœuds pour détecter les composantes connexes
         foreach (var noeud in NoeudsGraphe)
         {
-            if (etatSommets[noeud.Id] == "Blanc" && ContientCycleRécuUtil(noeud.Id, etatSommets, -1))
+            // Lance le DFS seulement si le nœud n'a pas été visité
+            if (etatSommets[noeud.Id] == "Blanc" && ContientCycleAuxiliaire(noeud.Id, etatSommets, -1))
             {
                 return true;
             }
         }
         return false;
     }
-
-    public bool ContientCycleRécuUtil(int sommet, Dictionary<int, string> etatSommets, int parent)
+    /// <summary>
+    /// Méthode récursive auxiliaire pour la détection de cycles
+    /// </summary>
+    public bool ContientCycleAuxiliaire(int sommet, Dictionary<int, string> etatSommets, int parent)
     {
+        // Marque le nœud courant comme étant en cours de traitement
         etatSommets[sommet] = "Jaune";
-
+        // Explore tous les voisins du nœud actuel
         foreach (var voisin in NoeudsGraphe[sommet].ListeAdjacence)
         {
+            // Cas 1 : Voisin non exploré -> Exploration récursive
             if (etatSommets[voisin] == "Blanc")
             {
-                if (ContientCycleRécuUtil(voisin, etatSommets, sommet))
+                if (ContientCycleAuxiliaire(voisin, etatSommets, sommet))
+                {
                     return true;
+                }
             }
+            // Cas 2 : Voisin déjà en cours d'exploration (Jaune) et différent du parent 
+            // -> Cycle détecté !
             else if (voisin != parent && etatSommets[voisin] == "Jaune")
             {
                 Console.WriteLine("Cycle détecté via le sommet " + voisin + " !");
                 return true;
             }
         }
-
+        // Fin du traitement : marque le nœud comme complètement visité
         etatSommets[sommet] = "Rouge"; 
         Console.WriteLine("Fin du traitement du sommet " + sommet + " (Rouge)");
         return false;
