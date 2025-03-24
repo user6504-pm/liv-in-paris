@@ -8,8 +8,7 @@ namespace Program
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args){
             //répondre aux questions (parcours, connexe, cycle ?)
             //+ outils de visualisation d'un graphe (Microsoft System.Drawing)
             string chemin = "Noeuds + Liens - associations.txt";
@@ -20,10 +19,9 @@ namespace Program
             //    mongraphe.EstConnexe(); // <-- à revoir problème de out of range
             //mongraphe.ContientCycleRécu();
         }
-            static Graphe ChargerGrapheDepuisFichier(string cheminFichier)
-            {
-                Dictionary<int,Noeud> dictionnaireNoeuds = new Dictionary<int, Noeud>();
-                List<Noeud> ListeNoeuds = new List<Noeud>();
+        static Graphe ChargerGrapheDepuisFichier(string cheminFichier) {
+            Dictionary<int,Noeud> dictionnaireNoeuds = new Dictionary<int, Noeud>();
+            List<Noeud> ListeNoeuds = new List<Noeud>();
 
             foreach (var ligne in File.ReadLines(cheminFichier))
             {
@@ -50,16 +48,13 @@ namespace Program
             AfficherListe(ListeNoeuds);
             //construire le graphe
 
-             Graphe monGraphe = new Graphe(ListeNoeuds);
+            Graphe monGraphe = new Graphe(ListeNoeuds);
             return monGraphe;
             }
 
-        static void AfficherListe(List<Noeud> liste)
-        {
+        static void AfficherListe(List<Noeud> liste){
             foreach (Noeud item in liste)
-            {
                 Console.WriteLine(item.Id);
-            }
         }
 
     }
